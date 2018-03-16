@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+<style>
+iframe {
+		width:100%;
+		margin:0 0 1em;
+		border:0;
+	}
+</style>
+</head>
+<body>
+              
+
+ 
+
+<ul class="layui-nav">
+  <li class="layui-nav-item layui-this"><a href="javascript:;" onclick="jump(0);false;">新建任务</a></li>
+  <li class="layui-nav-item">
+    <a href="javascript:;" onclick="jump(1);false;">压力测试</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">选项1</a></dd>
+      <dd><a href="">选项2</a></dd>
+      <dd><a href="">选项3</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item"><a href="javascript:;" onclick="jump(2);false;">服务监控</a></li>
+  <li class="layui-nav-item">
+    <a href="javascript:;" onclick="jump(1);false;">解决方案</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">移动模块</a></dd>
+      <dd><a href="">后台模版</a></dd>
+      <dd class="layui-this"><a href="">选中项</a></dd>
+      <dd><a href="">电商平台</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item"><a href="">社区</a></li>
+</ul>
+
+
+
+<iframe src="./Setting.html" id="iframepage" scrolling="no" width="100%"></iframe>
+          
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+  
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+
+function setIframeHeight(iframe) {
+			if (iframe) {
+				var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+				if (iframeWin.document.body) {
+					iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				}
+			}
+		};
+
+function jump(flag){
+	switch(flag){
+	case 0:setIframeSrc("./Setting.html");break;
+	case 1:setIframeSrc("./StressTest.html");break;
+	case 2:setIframeSrc("./ServiceMonitor.html");break;
+	}
+
+}
+
+function setIframeSrc(url){
+	var iframe = document.getElementById('iframepage');
+	if(iframe.src != url)
+		iframe.src = url;
+	
+}
+window.onload = function () {
+			setIframeHeight(document.getElementById('iframepage'));
+		};
+</script>
+
+</body>
+</html>
